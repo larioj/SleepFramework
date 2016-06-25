@@ -12,7 +12,7 @@ echo 'Installing curl ...'
 yum install -y curl
 
 echo 'Installing Java ...'
-yum install java-1.8.0-openjdk-devel
+yum install -y java-1.8.0-openjdk-devel
 javac -version
 
 echo 'Installing Scala ...'

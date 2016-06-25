@@ -51,10 +51,9 @@ class SleepScheduler extends Scheduler {
         .setSlaveId(slaveId)
         .addResources(cpu)
         .addResources(mem)
-        .build()
 
       // Launch the task
-      driver.launchTasks(List(offer.getId).asJava, List(task).asJava)
+      driver.launchTasks(List(offer.getId).asJava, List(task.build).asJava)
     }
   }
 

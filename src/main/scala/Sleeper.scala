@@ -14,15 +14,16 @@ object Sleeper {
 
   def main(args: Array[String]): Unit = {
     if (args.length != 1) usage()
+
     val scheduler = new SleepScheduler
     val framework = FrameworkInfo.newBuilder
       .setName("SleepFramework")
       .setFailoverTimeout(60.seconds.toMillis)
       .setCheckpoint(false)
       .setUser("") // take the default
-      .build()
     val mesosMaster = args(0)
-    val driver = new MesosSchedulerDriver(scheduler, framework, mesosMaster)
+
+    val driver = new MesosSchedulerDriver(scheduler, framework.build, mesosMaster)
     driver.run()
   }
 }
