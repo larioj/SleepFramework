@@ -1,8 +1,7 @@
 import java.util
 
-import mesosphere.mesos.util.ScalarResource
 import org.apache.mesos.Protos._
-import org.apache.mesos.{Scheduler, SchedulerDriver}
+import org.apache.mesos._
 
 import scala.collection.JavaConverters._
 
@@ -37,20 +36,25 @@ class SleepScheduler extends Scheduler {
       println(s"\tresource offer $offer")
 
       // Setup
-      val commandInfo = CommandInfo.newBuilder.setValue("sleep 10 && echo awake")
-      val id = "task" + System.currentTimeMillis()
-      val cpus = ScalarResource("cpus", 1.0)
+      val command = CommandInfo.newBuilder.setValue("sleep 10 && echo awake")
+      val id = TaskID.newBuilder.setValue("task" + System.currentTimeMillis())
+      val name = s"SleepTask-${id.getValue}"
+      val slaveId = offer.getSlaveId
+      val cpu = Resource.newBuilder.setName("cpus").setType(Value.Type.SCALAR).setScalar(Value.Scalar.newBuilder.setValue(1.0))
+      val mem = Resource.newBuilder.setName("mem").setType(Value.Type.SCALAR).setScalar(Value.Scalar.newBuilder.setValue(32))
 
       // Fill taskInfo
-      val taskInfo = TaskInfo.newBuilder
-        .setCommand(commandInfo)
-        .setName(s"SleepTask-$id")
-        .setTaskId(TaskID.newBuilder.setValue(id))
-        .setSlaveId(offer.getSlaveId)
-        .addResources(cpus.toProto)
+      val task = TaskInfo.newBuilder
+        .setCommand(command)
+        .setName(name)
+        .setTaskId(id)
+        .setSlaveId(slaveId)
+        .addResources(cpu)
+        .addResources(mem)
         .build()
 
-      driver.launchTasks(offer.getId, List(taskInfo).asJava)
+      // Launch the task
+      driver.launchTasks(List(offer.getId).asJava, List(task).asJava)
     }
   }
 
