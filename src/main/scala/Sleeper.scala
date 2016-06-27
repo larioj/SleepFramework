@@ -35,7 +35,7 @@ object Sleeper {
       Thread.sleep(1000)
     }
 
-    scheduler.shutdown() {
+    scheduler.shutdown {
       driver.stop()
     }
 
