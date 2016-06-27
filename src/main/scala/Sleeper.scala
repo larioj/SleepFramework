@@ -5,14 +5,8 @@ import org.apache.mesos.Protos.{FrameworkID, FrameworkInfo}
   * Created by Jesus E. Larios Murillo on 6/24/16.
   */
 object Sleeper {
-  def usage(): Unit = {
-    println("Usage: run <mesosMaster>")
-    System.exit(1)
-  }
 
   def main(args: Array[String]): Unit = {
-    if (args.length != 1) usage()
-
     val name = "SleepFramework"
     val user = "" // take the default
     val checkpointing = false
@@ -27,7 +21,7 @@ object Sleeper {
       .setUser(user)
       .setId(id)
       .build()
-    val mesosMaster = args(0)
+    val mesosMaster = "127.0.1.1:5050"
 
     val driver = new MesosSchedulerDriver(scheduler, framework, mesosMaster)
 
