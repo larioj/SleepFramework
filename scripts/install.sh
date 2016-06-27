@@ -22,9 +22,4 @@ tar xvf ${scala}.tgz
 mv $scala /usr/lib
 ln -s /usr/lib/$scala /usr/lib/scala
 
-echo 'Installing Sbt ...'
-mkdir ~/bin
-curl -s https://raw.githubusercontent.com/paulp/sbt-extras/master/sbt > ~/bin/sbt \
-  && chmod 0755 ~/bin/sbt
-
 echo 'Done :)'
