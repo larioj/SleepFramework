@@ -29,7 +29,7 @@ class SleepScheduler extends Scheduler {
         driver.declineOffer(offer.getId)
       } else {
         // Setup
-        val command = CommandInfo.newBuilder.setValue("sleep 10 && echo imawake")
+        val command = CommandInfo.newBuilder.setValue("sleep 10 && echo imawake && exit 11")
         val id = TaskID.newBuilder.setValue("task" + System.currentTimeMillis())
         val name = s"SleepTask-${id.getValue}"
         val slaveId = offer.getSlaveId
@@ -68,7 +68,7 @@ class SleepScheduler extends Scheduler {
     println(s"error: Error: $message")
 
   override def statusUpdate(driver: SchedulerDriver, status: TaskStatus): Unit =
-    println(s"statusUpdate: Status update: Task ${status.getTaskId.getValue} is in state ${status.getState}")
+    println(s"statusUpdate: Status update: Task ${status.getTaskId.getValue} is in state ${status.getState}, msg: ${status.getMessage}")
 
   override def frameworkMessage(driver: SchedulerDriver, executorId: ExecutorID, slaveId: SlaveID, data: Array[Byte]): Unit =
     println(s"frameworkMessage: Received message from executor ${executorId.getValue} at slave ${slaveId.getValue} with contents ${data}")
