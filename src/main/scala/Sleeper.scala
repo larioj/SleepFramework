@@ -7,7 +7,7 @@ import org.apache.mesos.Protos.{FrameworkID, FrameworkInfo}
 object Sleeper {
 
   def main(args: Array[String]): Unit = {
-    val name = "SleepFramework"
+    val name = "SleepFramework 2"
     val user = "" // take the default
     val checkpointing = false
     val timeout = 60.0
