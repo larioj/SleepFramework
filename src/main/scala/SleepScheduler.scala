@@ -4,7 +4,6 @@ import org.apache.mesos.Protos._
 import org.apache.mesos._
 
 import scala.collection.JavaConverters._
-import scala.concurrent.ExecutionContext.Implicits.global
 
 /**
   * Created by Jesus E. Larios Murillo on 6/24/16.

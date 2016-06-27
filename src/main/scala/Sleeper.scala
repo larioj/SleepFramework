@@ -2,6 +2,7 @@ import org.apache.mesos.MesosSchedulerDriver
 import org.apache.mesos.Protos.{FrameworkID, FrameworkInfo}
 
 import scala.concurrent.Future
+import scala.concurrent.ExecutionContext.Implicits.global
 
 /**
   * Created by Jesus E. Larios Murillo on 6/24/16.
