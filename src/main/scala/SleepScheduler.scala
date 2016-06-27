@@ -58,8 +58,7 @@ class SleepScheduler extends Scheduler {
         .build()
 
       // Launch the task
-      //driver.launchTasks(List(offer.getId).asJava, List(task).asJava)
-      driver.declineOffer(offer.getId)
+      driver.launchTasks(List(offer.getId).asJava, List(task).asJava)
     }
   }
 
