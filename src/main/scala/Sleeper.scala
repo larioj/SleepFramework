@@ -1,13 +1,15 @@
 import org.apache.mesos.MesosSchedulerDriver
 import org.apache.mesos.Protos.{FrameworkID, FrameworkInfo}
 
+import scala.concurrent.Future
+
 /**
   * Created by Jesus E. Larios Murillo on 6/24/16.
   */
 object Sleeper {
 
   def main(args: Array[String]): Unit = {
-    val name = "SleepFramework 2"
+    val name = "SleepFramework 3"
     val user = "" // take the default
     val checkpointing = false
     val timeout = 60.0
@@ -25,6 +27,18 @@ object Sleeper {
 
     val driver = new MesosSchedulerDriver(scheduler, framework, mesosMaster)
 
-    driver.run()
+    Future {
+      driver.run()
+    }
+
+    while (System.in.read() != '\n'.toInt) {
+      Thread.sleep(1000)
+    }
+
+    scheduler.shutdown() {
+      driver.stop()
+    }
+
+    sys.exit(0)
   }
 }
