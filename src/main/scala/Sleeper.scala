@@ -10,7 +10,7 @@ import scala.concurrent.ExecutionContext.Implicits.global
 object Sleeper {
 
   def main(args: Array[String]): Unit = {
-    val name = "SleepFramework 3"
+    val name = "SleepFramework " + System.currentTimeMillis()
     val user = "" // take the default
     val checkpointing = false
     val timeout = 60.0
