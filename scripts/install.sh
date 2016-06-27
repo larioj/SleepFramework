@@ -1,9 +1,9 @@
-#/bin/bash
+#!/usr/bin/env bash
 
 echo 'Install Starting'
 
-echo 'Installing Git ...'
-yum install -y git
+##echo 'Installing Git ...'
+##yum install -y git
 
 echo 'Installing wget ...'
 yum install -y wget

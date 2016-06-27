@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 export PATH=$PATH:/usr/lib/scala/bin
 
 echo 'Installing Sbt ...'
