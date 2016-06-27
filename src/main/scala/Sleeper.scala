@@ -21,7 +21,7 @@ object Sleeper {
       .setUser(user)
       .setId(id)
       .build()
-    val mesosMaster = "127.0.1.1:5050"
+    val mesosMaster = "192.168.65.90:5050"
 
     val driver = new MesosSchedulerDriver(scheduler, framework, mesosMaster)
 
