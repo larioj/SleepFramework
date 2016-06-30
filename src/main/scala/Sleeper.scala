@@ -17,10 +17,10 @@ object Sleeper {
     val id = FrameworkID.newBuilder.setValue(name).build()
 
     val executorCommand = CommandInfo.newBuilder
-      .setValue("PrefixExecutor")
+      .setValue("???")
       .build()
-    val executorId = ExecutorID.newBuilder.setValue("PrefixExecutor-" + System.currentTimeMillis())
-    val executorName = "Prefix Executor"
+    val executorId = ExecutorID.newBuilder.setValue("SleepExecutor-" + System.currentTimeMillis())
+    val executorName = "Sleep Executor"
     val source = "java"
 
 

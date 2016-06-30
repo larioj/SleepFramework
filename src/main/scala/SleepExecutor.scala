@@ -4,7 +4,7 @@ import org.apache.mesos.Protos.{TaskState, TaskStatus, _}
 /**
   * Created by mesosphere on 6/30/16.
   */
-class SleepExecutor extends Executor {
+object SleepExecutor extends Executor {
   override def shutdown(driver: ExecutorDriver): Unit = {
     println("Shutdown: starting")
   }
@@ -41,7 +41,7 @@ class SleepExecutor extends Executor {
   }
 
   def main(args: Array[String]): Unit = {
-    val driver = new MesosExecutorDriver(new SleepExecutor)
+    val driver = new MesosExecutorDriver(SleepExecutor)
     driver.run()
   }
 }
