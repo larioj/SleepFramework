@@ -8,7 +8,7 @@ import scala.collection.JavaConverters._
 /**
   * Created by Jesus E. Larios Murillo on 6/24/16.
   */
-class SleepScheduler extends Scheduler {
+class SleepScheduler(executor: ExecutorInfo) extends Scheduler {
 
   private[this] var shuttingDown = false
 
@@ -29,7 +29,6 @@ class SleepScheduler extends Scheduler {
         driver.declineOffer(offer.getId)
       } else {
         // Setup
-        val command = CommandInfo.newBuilder.setValue("sleep 10 && echo imawake && exit 11")
         val id = TaskID.newBuilder.setValue("task" + System.currentTimeMillis())
         val name = s"SleepTask-${id.getValue}"
         val slaveId = offer.getSlaveId
@@ -38,7 +37,7 @@ class SleepScheduler extends Scheduler {
 
         // Fill taskInfo
         val task = TaskInfo.newBuilder
-          .setCommand(command)
+          .setExecutor(executor)
           .setName(name)
           .setTaskId(id)
           .setSlaveId(slaveId)

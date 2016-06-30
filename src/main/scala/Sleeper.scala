@@ -1,5 +1,5 @@
 import org.apache.mesos.MesosSchedulerDriver
-import org.apache.mesos.Protos.{FrameworkID, FrameworkInfo}
+import org.apache.mesos.Protos._
 
 import scala.concurrent.Future
 import scala.concurrent.ExecutionContext.Implicits.global
@@ -16,7 +16,22 @@ object Sleeper {
     val timeout = 60.0
     val id = FrameworkID.newBuilder.setValue(name).build()
 
-    val scheduler = new SleepScheduler
+    val executorCommand = CommandInfo.newBuilder
+      .setValue("PrefixExecutor")
+      .build()
+    val executorId = ExecutorID.newBuilder.setValue("PrefixExecutor-" + System.currentTimeMillis())
+    val executorName = "Prefix Executor"
+    val source = "java"
+
+
+    val executor = ExecutorInfo.newBuilder
+      .setCommand(executorCommand)
+      .setExecutorId(executorId)
+      .setName(executorName)
+      .setSource(source)
+      .build()
+
+    val scheduler = new SleepScheduler(executor)
     val framework = FrameworkInfo.newBuilder
       .setName(name)
       .setFailoverTimeout(timeout)
