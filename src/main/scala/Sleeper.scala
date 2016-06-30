@@ -17,11 +17,11 @@ object Sleeper {
     val id = FrameworkID.newBuilder.setValue(name).build()
 
     val executorCommand = CommandInfo.newBuilder
-      .setValue("java -cp /home/vagrant/SleepFramework/target/scala-2.11/sleepframework_2.11-1.0.jar SleepExecutor")
+      .setValue("sh /home/vagrant/Sleeper/scripts/SleepExecutor")
       .build()
     val executorId = ExecutorID.newBuilder.setValue("SleepExecutor-" + System.currentTimeMillis())
     val executorName = "Sleep Executor"
-    val source = "java"
+    val source = "sh"
 
 
     val executor = ExecutorInfo.newBuilder
