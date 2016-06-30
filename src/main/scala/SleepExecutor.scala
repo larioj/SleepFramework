@@ -27,17 +27,24 @@ object SleepExecutor extends Executor {
          |Launch Task: ${task.getTaskId.getValue}
       """.stripMargin)
 
-    driver.sendStatusUpdate(TaskStatus.newBuilder
-      .setTaskId(task.getTaskId)
-      .setState(TaskState.TASK_RUNNING).build())
+    val thread = new Thread {
+      override def run(): Unit = {
+        driver.sendStatusUpdate(TaskStatus.newBuilder
+          .setTaskId(task.getTaskId)
+          .setState(TaskState.TASK_RUNNING).build())
 
-    println("\t Sleeping for 1 second... zzz")
-    Thread.sleep(1000)
+        println("\t Sleeping for 1 second... zzz")
+        Thread.sleep(1000)
 
-    driver.sendStatusUpdate(TaskStatus.newBuilder
-      .setTaskId(task.getTaskId)
-      .setState(TaskState.TASK_FINISHED)
-      .build())
+        driver.sendStatusUpdate(TaskStatus.newBuilder
+          .setTaskId(task.getTaskId)
+          .setState(TaskState.TASK_FINISHED)
+          .build())
+
+      }
+    }
+
+    thread.start()
   }
 
   def main(args: Array[String]): Unit = {
