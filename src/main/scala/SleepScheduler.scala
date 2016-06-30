@@ -54,8 +54,8 @@ class SleepScheduler(executor: ExecutorInfo) extends Scheduler {
   override def offerRescinded(driver: SchedulerDriver, offerId: OfferID): Unit =
     println(s"offerRecinded: Offer ${offerId.getValue} has been rescinded")
 
-  override def disconnected(driver: SchedulerDriver): Unit = {}
-  println("disconnected: Disconnected from the mesos master")
+  override def disconnected(driver: SchedulerDriver): Unit =
+    println("disconnected: Disconnected from the mesos master")
 
   override def reregistered(driver: SchedulerDriver, masterInfo: MasterInfo): Unit =
     println("reregistered: Reregistered with the mesos master")
@@ -75,6 +75,6 @@ class SleepScheduler(executor: ExecutorInfo) extends Scheduler {
   override def registered(driver: SchedulerDriver, frameworkId: FrameworkID, masterInfo: MasterInfo): Unit =
     println(s"registered: Registered with mesos master ${masterInfo.getId} at ip ${masterInfo.getIp} with port ${masterInfo.getPort}")
 
-  override def executorLost(driver: SchedulerDriver, executorId: ExecutorID, slaveId: SlaveID, status: Int): Unit = {}
-    //println(s"executorLost: We lost the executor ${executorId.getValue} at slave ${slaveId.getValue}!!!")
+  override def executorLost(driver: SchedulerDriver, executorId: ExecutorID, slaveId: SlaveID, status: Int): Unit =
+    println(s"executorLost: ")
 }
