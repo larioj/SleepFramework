@@ -17,7 +17,7 @@ object Sleeper {
     val id = FrameworkID.newBuilder.setValue(name).build()
 
     val executorCommand = CommandInfo.newBuilder
-      .setValue("java -cp /home/vagrant/SleepFramework/target/scala-2.11/SleepFramework-assembly-1.0.jar SleepExecutor")
+      .setValue("/opt/mesosphere/bin/java -cp /home/vagrant/SleepFramework/target/scala-2.11/SleepFramework-assembly-1.0.jar SleepExecutor")
       .build()
     val executorId = ExecutorID.newBuilder.setValue("SleepExecutor-" + System.currentTimeMillis())
     val executorName = "Sleep Executor"
