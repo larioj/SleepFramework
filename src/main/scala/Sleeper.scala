@@ -21,7 +21,7 @@ object Sleeper {
       .build()
     val executorId = ExecutorID.newBuilder.setValue("SleepExecutor-" + System.currentTimeMillis())
     val executorName = "Sleep Executor"
-    val source = "SleepExecutor"
+    val source = "java"
 
 
     val executor = ExecutorInfo.newBuilder
