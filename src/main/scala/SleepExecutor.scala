@@ -34,7 +34,7 @@ object SleepExecutor extends Executor {
           .setState(TaskState.TASK_RUNNING).build())
 
         println("\t Sleeping for 1 second... zzz")
-        Thread.sleep(1000)
+        //Thread.sleep(1000)
 
         driver.sendStatusUpdate(TaskStatus.newBuilder
           .setTaskId(task.getTaskId)

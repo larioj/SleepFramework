@@ -33,7 +33,7 @@ class SleepScheduler(executor: ExecutorInfo) extends Scheduler {
         val name = s"SleepTask-${id.getValue}"
         val slaveId = offer.getSlaveId
         val cpu = Resource.newBuilder.setName("cpus").setType(Value.Type.SCALAR).setScalar(Value.Scalar.newBuilder.setValue(1.0))
-        val mem = Resource.newBuilder.setName("mem").setType(Value.Type.SCALAR).setScalar(Value.Scalar.newBuilder.setValue(32))
+        val mem = Resource.newBuilder.setName("mem").setType(Value.Type.SCALAR).setScalar(Value.Scalar.newBuilder.setValue(128))
 
         // Fill taskInfo
         val task = TaskInfo.newBuilder
